@@ -1,6 +1,6 @@
 .body_background 
 {
-	background-image: url("Avengers_Bg.jpg");
+	background-image: url("avenger_Bg.jpg");
     background-position: center;
     background-size: cover;
 }
@@ -38,4 +38,11 @@ a
 	width: 600px;
 	border-radius: 10px;
 	margin-bottom: 10px;
+}
+#information
+{
+	width: 100%;
+	height: auto;
+	background-color: aqua;
+	color: black;
 }
