@@ -7,8 +7,8 @@ var player_Object="";
 var block_image_Object="";
 
 function player_update() {
-    fabric.Image.fromURL("Player.png",function(img) {
-        player_Object=img;
+    fabric.Image.fromURL("Player.png",function(uploaded_player_image) {
+        player_Object=uploaded_player_image;
         player_Object.scaleToWidth(150);
         player_Object.scaleToHeight(140);
         player_Object.set({
@@ -20,8 +20,8 @@ function player_update() {
 }
 
 function new_image(get_image) {
-    fabric.Image.fromURL(get_image,function(img){
-        block_image_Object=img;
+    fabric.Image.fromURL(get_image,function(uploaded_block_image){
+        block_image_Object=uploaded_block_image;
         block_image_Object.scaleToWidth(block_image_width);
         block_image_Object.scaleToHeight(block_image_height);
         block_image_Object.set({
@@ -36,9 +36,9 @@ player_update();
 
 window.addEventListener("keydown",my_keydown);
 function my_keydown(e) {
-    keyPressed=e.keyCode;
-    console.log(keyPressed);
-    if(e.shiftKey==true&&keyPressed=='80') {
+    keypressed=e.keyCode;
+    console.log(keypressed);
+    if(e.shiftKey==true&&keypressed=='80') {
         console.log("p and shiftkey are pressed together");
         block_image_width=block_image_width+10;
         block_image_height=block_image_height+10;
@@ -46,7 +46,7 @@ function my_keydown(e) {
         document.getElementById("current_height").innerHTML=block_image_height;
     }
 
-    if(e.shiftKey==true&&keyPressed=='77') {
+    if(e.shiftKey==true&&keypressed=='77') {
         console.log("m and shiftkey are pressed together");
         block_image_width=block_image_width-10;
         block_image_height=block_image_height-10;
@@ -54,22 +54,22 @@ function my_keydown(e) {
         document.getElementById("current_height").innerHTML=block_image_height;
     }
 
-    if(keyPressed=='38'){
+    if(keypressed=='38'){
         Up();
         console.log("Up key is pressed");
     }
 
-    if(keyPressed=='40'){
+    if(keypressed=='40'){
         Down();
         console.log("Down key is pressed");
     }
 
-    if(keyPressed=='37'){
+    if(keypressed=='37'){
         Left();
         console.log("Left key is pressed");
     }
 
-    if(keyPressed=='39'){
+    if(keypressed=='39'){
         Right();
         console.log("Right key is pressed");
     }
@@ -169,3 +169,44 @@ function my_keydown(e) {
         console.log("S is pressed");
     }
 }
+
+function Up() {
+    if (player_Y >= 0) {
+        player_Y = player_Y - block_image_height;
+        console.log("block image height = " + block_image_height);
+        console.log("When up arrow key is pressed, X = " + player_X + ", Y = " + player_Y);
+        canvas.remove(player_Object);
+        player_update();
+    }
+}
+
+function Down() {
+    if (player_Y <= 500) {
+        player_Y = player_Y + block_image_height;
+        console.log("block image height = " + block_image_height);
+        console.log("When down arrow key is pressed, X = " + player_X + ", Y = " + player_Y);
+        canvas.remove(player_Object);
+        player_update();
+    }
+}
+
+function Left() {
+    if (player_X >= 0) {
+        player_X = player_X - block_image_width;
+        console.log("block image width = " + block_image_width);
+        console.log("When left arrow key is pressed, X = " + player_X + ", Y = " + player_Y);
+        canvas.remove(player_Object);
+        player_update();
+    }
+}
+
+function Right() {
+    if (player_X <= 700) {
+        player_X = player_X + block_image_width;
+        console.log("block image width = " + block_image_width);
+        console.log("When right arrow key is pressed, X = " + player_X + ", Y = " + player_Y);
+        canvas.remove(player_Object);
+        player_update();
+    }
+}
+
